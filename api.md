@@ -18,7 +18,7 @@ reviewers from both client (iOS or web) and server teams.
             - `message`:`string` Error message 
         - `user`: [](User object) the complete user object 
     - Response mock: [](/login/general mock)
-- `/login/weixi`
+- `/login/wechat`
 - `/login/weibo`
 - `/login/alipay`
 - `/signup`
