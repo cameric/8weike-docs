@@ -6,7 +6,7 @@ reviewers from both client (iOS or web) and server teams.
 
 ### Credential
 
-- `POST /login/phone`
+- `POST /api/login/phone`
     - Description: login endpoint using cellphone number
     - Request params:
         - `phone`:`string` the cellphone number
@@ -20,20 +20,20 @@ reviewers from both client (iOS or web) and server teams.
         - `credential`: `object` a minimal repredentation of credential with following properties
             - `id`: `string` the credential id
             - `profileId`: `stering` the profile id that 
-- `POST /login/weixi`
-- `POST /login/weibo`
-- `GET /login`
+- `POST /api/login/weixin`
+- `POST /api/login/weibo`
+- `GET /api/login`
     - Description: check if the user has logged in and retrieve credential ID if so
     - Request params: no request params needed
     - Response:
         - `statusCode`: 200,
         - `credential`: `object` object containing the credential Id
             - `id`: `integer` the logged in credential ID or null if not
-- `GET /logout`
+- `GET /api/logout`
     - Description: logout endpoint
     - Request params: No params needed
     - Response: 200 with no other information
-- `POST /signup/phone/web`
+- `POST /api/signup/phone/web`
     - Description: web-only signup endpoint with cellphone. It will send a TFA code to phone.
     - Note: This endpoint involves Captcha check so it's not suitable for mobile environment.
     - Request params:
@@ -51,7 +51,7 @@ reviewers from both client (iOS or web) and server teams.
                     - Error occurred in the process of sending TFA code
                     - Error occurred during session seving
             - `message`:`string` Error message
-- `POST /signup/phone/mobile`
+- `POST /api/signup/phone/mobile`
     - Description: mobile-only signup endpoint with cellphone. It will send a TFA code to phone.
     - Note: This endpoint does not go through Captcha check so it's not suitable for web.
     - Request params:
@@ -65,7 +65,7 @@ reviewers from both client (iOS or web) and server teams.
                     - Error occurred in the process of sending TFA code
                     - Error occurred during session seving
             - `message`:`string` Error message
-- `POST /signup/verify`
+- `POST /api/signup/verify`
     - Description: verify the TFA code and save user credential into DB
     - Request params:
         - `code`: `string` the user-input TFA code
@@ -79,7 +79,7 @@ reviewers from both client (iOS or web) and server teams.
             - `message`:`string` Error message
         - `credential`: `object` an object containing credential ID
             - `id`: `integer` the credential ID for the newly created user
-- `GET /forget` [Not implemented yet]
+- `GET /api/forget` [Not implemented yet]
     - Description: use the cellphone number to check if the user exists
     - Request params:
         - `phone`:`string` the cellphone number used for getting password
@@ -88,7 +88,7 @@ reviewers from both client (iOS or web) and server teams.
             - `200`: user exists 
             - `404`: user doesn't exist
         - `message`:`string` Error message
-- `POST /forget` [Not implemented yet]
+- `POST /api/forget` [Not implemented yet]
     - Description: endpoint for setting up new password
     - Method: `POST`
     - Request params:
@@ -97,7 +97,7 @@ reviewers from both client (iOS or web) and server teams.
 
 ### Profile
 
-- `POST /profile`
+- `POST /api/profile`
     - Description: create a new profile
     - Note: this endpoint requires that the user has logged in
     - Request params:
@@ -109,7 +109,7 @@ reviewers from both client (iOS or web) and server teams.
             - `message`:`string` Error message
         - `profile`: `object` an object containing the new profileID
             - `profileId`: the profileId of the new profile
-- `GET /profile/info`
+- `GET /api/profile/info`
     - Description: retrieve the minimal representation of a profile
     - Note: this endpoint requires that the user has logged in
     - Note: this endpoint is more suitable for web, since it's better to get the whole
@@ -123,7 +123,7 @@ reviewers from both client (iOS or web) and server teams.
             - `nickname`: `string` the profile's nickname
             - `description`: `string` profile description
             - `avatar`: `bitmap` the avatar of the profile
-- `GET /profile/full` [Not implemented yet]
+- `GET /api/profile/full` [Not implemented yet]
     - Description: retrieve the full representation of a profile
     - Note: this endpoint is more suitable for web, since it's better to get the whole
       user in one call on mobile.
@@ -136,7 +136,7 @@ reviewers from both client (iOS or web) and server teams.
 
 ### Others
 
-- `GET /captcha`
+- `GET /api/captcha`
     - Description: web-onlt endpoint to get a captcha image data and hash
     - Request params: no param is needed
     - Response:
@@ -146,7 +146,7 @@ reviewers from both client (iOS or web) and server teams.
         - `captcha`: `object` the captcha info
             - `hash`: `string` the bcrypt hash for the actual result of the captcha
             - `picture`: `array<int>` base64 image data buffer            
-- `GET /global_info`
+- `GET /api/global_info`
     - Description: get company-specific data from the server
     - Request params: no param is needed
     - Response:
