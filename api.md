@@ -136,7 +136,7 @@ reviewers from both client (iOS or web) and server teams.
 
 ### Others
 
-- `GET /api/captcha`
+- `POST /api/captcha`
     - Description: web-onlt endpoint to get a captcha image data and hash
     - Request params: no param is needed
     - Response:
